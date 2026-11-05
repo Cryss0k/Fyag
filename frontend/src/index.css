@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+/* Tokens de diseño. Front 1: completar paleta y tipografía y documentarlas (pedido del docente). */
+@theme {
+  --color-brand-50: #eef6fc;
+  --color-brand-600: #0b5ea8;
+  --color-brand-700: #094c88;
+  --color-ok: #16a34a;
+  --color-alerta: #dc2626;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}

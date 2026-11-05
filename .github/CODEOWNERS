@@ -1,0 +1,43 @@
+# Reemplazar cada @usuario-* por el usuario real de GitHub de quien tenga el rol.
+# Back 1 = @usuario-back1 · Back 2 = @usuario-back2 · BD = @usuario-bd
+# Front 1 = @usuario-front1 · Front 2 = @usuario-front2 · Manager = @usuario-manager
+
+/backend/apps/accounts/        @usuario-back1
+/backend/apps/clientes/        @usuario-back1
+/backend/apps/presupuestos/    @usuario-back1
+/backend/apps/obras/           @usuario-back2
+/backend/apps/cobranzas/       @usuario-back2
+/backend/apps/dashboard/       @usuario-bd
+/backend/apps/reportes/        @usuario-bd
+/backend/apps/seeds/           @usuario-bd
+/backend/apps/common/          @usuario-manager
+/backend/apps/audit/           @usuario-manager
+/backend/config/               @usuario-manager
+/backend/requirements/         @usuario-manager
+
+/db/                           @usuario-bd
+**/migrations/              @usuario-bd
+
+/frontend/src/shared/          @usuario-front1
+/frontend/src/app/             @usuario-front1
+/frontend/src/features/auth/       @usuario-front1
+/frontend/src/features/usuarios/   @usuario-front1
+/frontend/src/features/tecnico/    @usuario-front1
+/frontend/src/features/dashboard/  @usuario-front1
+/frontend/src/features/reportes/   @usuario-front1
+/frontend/src/features/clientes/      @usuario-front2
+/frontend/src/features/presupuestos/  @usuario-front2
+/frontend/src/features/obras/         @usuario-front2
+/frontend/src/features/cobranzas/     @usuario-front2
+
+/contracts/accounts.yaml       @usuario-back1
+/contracts/clientes.yaml       @usuario-back1
+/contracts/presupuestos.yaml   @usuario-back1
+/contracts/obras.yaml          @usuario-back2
+/contracts/cobranzas.yaml      @usuario-back2
+/contracts/dashboard.yaml      @usuario-bd
+/contracts/reportes.yaml       @usuario-bd
+/contracts/audit.yaml          @usuario-manager
+
+/.github/                      @usuario-manager
+/docs/                         @usuario-manager

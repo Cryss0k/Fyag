@@ -1,0 +1,8 @@
+"""Nombres de rol como texto plano (coinciden con accounts.Rol)."""
+
+GERENCIA = "GERENCIA"
+ADMINISTRATIVO = "ADMINISTRATIVO"  # = Finanzas
+SUPERVISOR = "SUPERVISOR"
+TECNICO = "TECNICO"
+
+ALL_ROLES = (GERENCIA, ADMINISTRATIVO, SUPERVISOR, TECNICO)

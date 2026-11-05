@@ -1,0 +1,16 @@
+{
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id_obra": 104,
+      "nombre_obra": "Mantención planta Valle Verde",
+      "tipo_servicio": "Mantención",
+      "ubicacion": "Concepción, Biobío",
+      "fecha_inicio": "2026-11-02",
+      "fecha_fin_estimada": "2026-11-20",
+      "estado_operativo": "EN_PROCESO"
+    }
+  ]
+}

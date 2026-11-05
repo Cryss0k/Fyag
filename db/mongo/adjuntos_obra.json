@@ -1,0 +1,6 @@
+{
+  "coleccion": "adjuntos_obra",
+  "campos": ["id_obra", "nombre_archivo", "tipo_documento", "url_almacenamiento", "fecha_subida", "subido_por_usuario_id"],
+  "indices": [{"keys": {"id_obra": 1}}],
+  "nota": "BORRADOR. Es 'Should' (adjuntos y PDF); ajustar según el alcance real."
+}

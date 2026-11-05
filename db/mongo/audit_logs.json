@@ -1,0 +1,24 @@
+{
+  "coleccion": "audit_logs",
+  "validator": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": ["id_entidad", "tipo_entidad", "accion", "usuario", "fecha_registro"],
+      "properties": {
+        "id_entidad": {"bsonType": "int"},
+        "tipo_entidad": {"enum": ["OBRA", "PRESUPUESTO", "FACTURA", "USUARIO"]},
+        "accion": {"bsonType": "string"},
+        "estado_anterior": {"bsonType": ["string", "null"]},
+        "estado_nuevo": {"bsonType": ["string", "null"]},
+        "usuario": {"bsonType": "object", "required": ["id_usuario", "rol"]},
+        "fecha_registro": {"bsonType": "string"},
+        "detalles": {"bsonType": "object"}
+      }
+    }
+  },
+  "indices": [
+    {"keys": {"tipo_entidad": 1, "id_entidad": 1, "fecha_registro": -1}},
+    {"keys": {"fecha_registro": -1}}
+  ],
+  "nota": "BORRADOR. La Base de datos ajusta tipos (int/long) y el script de creación en el Sprint 1."
+}

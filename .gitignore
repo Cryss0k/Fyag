@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+backend/staticfiles/
+
+# Node
+node_modules/
+frontend/dist/
+*.tsbuildinfo
+# Un solo gestor de paquetes en el frontend: pnpm
+frontend/package-lock.json
+
+# Entorno y secretos (NUNCA subir)
+.env
+.env.*
+!.env.example
+frontend/.env.local
+*.pem
+*.key
+
+# Datos y respaldos reales
+*.dump
+*.sql.gz
+*.sql.enc
+db/backups/*.bak
+db/backups/*.enc
+
+# Editor / sistema
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,62 @@
+openapi: 3.0.3
+info:
+  title: FYAG — dashboard
+  version: 0.1.0
+  description: "Dueño Base de datos. BORRADOR de rutas y roles; completar los schemas antes del dom 8 nov."
+servers:
+  - url: /api/v1
+paths:
+  /dashboard/kpis/:
+    get:
+      summary: "KPIs: ventas del mes, por cobrar, obras activas, presupuestos aprobados/rechazados"
+      x-roles: [GERENCIA, ADMINISTRATIVO, SUPERVISOR]
+      responses:
+        "200": {description: OK}
+        "401": {$ref: "#/components/responses/Error"}
+        "403": {$ref: "#/components/responses/Error"}
+  /dashboard/facturacion-mensual/:
+    get:
+      summary: "Serie mensual de facturación"
+      x-roles: [GERENCIA, ADMINISTRATIVO]
+      responses:
+        "200": {description: OK}
+        "401": {$ref: "#/components/responses/Error"}
+        "403": {$ref: "#/components/responses/Error"}
+  /dashboard/obras-por-tipo/:
+    get:
+      summary: "Obras por tipo de servicio"
+      x-roles: [GERENCIA, ADMINISTRATIVO, SUPERVISOR]
+      responses:
+        "200": {description: OK}
+        "401": {$ref: "#/components/responses/Error"}
+        "403": {$ref: "#/components/responses/Error"}
+  /dashboard/rentabilidad/:
+    get:
+      summary: "Rentabilidad por obra"
+      x-roles: [GERENCIA, ADMINISTRATIVO]
+      responses:
+        "200": {description: OK}
+        "401": {$ref: "#/components/responses/Error"}
+        "403": {$ref: "#/components/responses/Error"}
+
+components:
+  responses:
+    Error:
+      description: Error con formato uniforme
+      content:
+        application/json:
+          schema: {$ref: "#/components/schemas/Error"}
+  schemas:
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code: {type: string, example: OBRA_SIN_TECNICO}
+            message: {type: string, example: Debe asignar al menos un técnico}
+            details: {type: object}
+    # TODO(dueño): definir aquí los schemas de entrada y salida de este módulo
+    # (tipos, largos, rangos) y referenciarlos en los endpoints con $ref. Ver contracts/examples/.

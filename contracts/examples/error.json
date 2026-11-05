@@ -1,0 +1,7 @@
+{
+  "error": {
+    "code": "OBRA_SIN_TECNICO",
+    "message": "Debe asignar al menos un técnico",
+    "details": {}
+  }
+}

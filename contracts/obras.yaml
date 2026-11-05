@@ -1,0 +1,108 @@
+openapi: 3.0.3
+info:
+  title: FYAG — obras
+  version: 0.1.0
+  description: "Dueño Back 2. BORRADOR de rutas y roles; completar los schemas antes del dom 8 nov."
+servers:
+  - url: /api/v1
+paths:
+  /tipos-servicio/:
+    get:
+      summary: "Listar tipos de servicio"
+      x-roles: [GERENCIA, ADMINISTRATIVO, SUPERVISOR]
+      responses:
+        "200": {description: OK}
+        "401": {$ref: "#/components/responses/Error"}
+        "403": {$ref: "#/components/responses/Error"}
+  /obras/:
+    get:
+      summary: "Listar obras con filtros (estado, tipo, fechas)"
+      x-roles: [GERENCIA, ADMINISTRATIVO, SUPERVISOR]
+      responses:
+        "200": {description: OK}
+        "401": {$ref: "#/components/responses/Error"}
+        "403": {$ref: "#/components/responses/Error"}
+    post:
+      summary: "Crear ficha de obra desde un presupuesto aprobado. Exige al menos un técnico en el cuerpo (id_tecnicos); nace EN_PROCESO (regla N°1)"
+      x-roles: [GERENCIA, SUPERVISOR]
+      responses:
+        "200": {description: OK}
+        "401": {$ref: "#/components/responses/Error"}
+        "403": {$ref: "#/components/responses/Error"}
+  /obras/mis-obras/:
+    get:
+      summary: "Obras asignadas al técnico. SIN ningún campo de monto (HDU-02)"
+      x-roles: [TECNICO]
+      responses:
+        "200": {description: OK}
+        "401": {$ref: "#/components/responses/Error"}
+        "403": {$ref: "#/components/responses/Error"}
+  /obras/{id_obra}/:
+    get:
+      summary: "Detalle (el técnico solo si está asignado; sin montos)"
+      x-roles: [GERENCIA, ADMINISTRATIVO, SUPERVISOR, TECNICO]
+      responses:
+        "200": {description: OK}
+        "401": {$ref: "#/components/responses/Error"}
+        "403": {$ref: "#/components/responses/Error"}
+    patch:
+      summary: "Editar ficha"
+      x-roles: [GERENCIA, SUPERVISOR]
+      responses:
+        "200": {description: OK}
+        "401": {$ref: "#/components/responses/Error"}
+        "403": {$ref: "#/components/responses/Error"}
+  /obras/{id_obra}/tecnicos/:
+    post:
+      summary: "Asignar técnico"
+      x-roles: [GERENCIA, SUPERVISOR]
+      responses:
+        "200": {description: OK}
+        "401": {$ref: "#/components/responses/Error"}
+        "403": {$ref: "#/components/responses/Error"}
+  /obras/{id_obra}/tecnicos/{id_usuario}/:
+    delete:
+      summary: "Quitar técnico"
+      x-roles: [GERENCIA, SUPERVISOR]
+      responses:
+        "200": {description: OK}
+        "401": {$ref: "#/components/responses/Error"}
+        "403": {$ref: "#/components/responses/Error"}
+  /obras/{id_obra}/transicion/:
+    post:
+      summary: "Cambiar estado {estado, motivo}: EN_PROCESO, SUSPENDIDA, FINALIZADA, CANCELADA (COBRADA es automático)"
+      x-roles: [GERENCIA, SUPERVISOR]
+      responses:
+        "200": {description: OK}
+        "401": {$ref: "#/components/responses/Error"}
+        "403": {$ref: "#/components/responses/Error"}
+  /obras/{id_obra}/historial/:
+    get:
+      summary: "Historial de auditoría de la obra"
+      x-roles: [GERENCIA, SUPERVISOR]
+      responses:
+        "200": {description: OK}
+        "401": {$ref: "#/components/responses/Error"}
+        "403": {$ref: "#/components/responses/Error"}
+
+components:
+  responses:
+    Error:
+      description: Error con formato uniforme
+      content:
+        application/json:
+          schema: {$ref: "#/components/schemas/Error"}
+  schemas:
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code: {type: string, example: OBRA_SIN_TECNICO}
+            message: {type: string, example: Debe asignar al menos un técnico}
+            details: {type: object}
+    # TODO(dueño): definir aquí los schemas de entrada y salida de este módulo
+    # (tipos, largos, rangos) y referenciarlos en los endpoints con $ref. Ver contracts/examples/.

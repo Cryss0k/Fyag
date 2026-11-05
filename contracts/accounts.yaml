@@ -1,0 +1,73 @@
+openapi: 3.0.3
+info:
+  title: FYAG — accounts
+  version: 0.1.0
+  description: "Dueño Back 1. BORRADOR de rutas y roles; completar los schemas antes del dom 8 nov."
+servers:
+  - url: /api/v1
+paths:
+  /auth/login/:
+    post:
+      summary: "Iniciar sesión (mensaje de error genérico; bloqueo 15 min tras 5 intentos)"
+      x-roles: [PUBLICO]
+      responses:
+        "200": {description: OK}
+  /auth/refresh/:
+    post:
+      summary: "Renovar token de acceso"
+      x-roles: [PUBLICO]
+      responses:
+        "200": {description: OK}
+  /auth/me/:
+    get:
+      summary: "Usuario de la sesión (nombre y rol)"
+      x-roles: [GERENCIA, ADMINISTRATIVO, SUPERVISOR, TECNICO]
+      responses:
+        "200": {description: OK}
+        "401": {$ref: "#/components/responses/Error"}
+        "403": {$ref: "#/components/responses/Error"}
+  /users/:
+    get:
+      summary: "Listar usuarios"
+      x-roles: [GERENCIA]
+      responses:
+        "200": {description: OK}
+        "401": {$ref: "#/components/responses/Error"}
+        "403": {$ref: "#/components/responses/Error"}
+    post:
+      summary: "Crear usuario"
+      x-roles: [GERENCIA]
+      responses:
+        "200": {description: OK}
+        "401": {$ref: "#/components/responses/Error"}
+        "403": {$ref: "#/components/responses/Error"}
+  /users/{id_usuario}/:
+    patch:
+      summary: "Editar o desactivar usuario"
+      x-roles: [GERENCIA]
+      responses:
+        "200": {description: OK}
+        "401": {$ref: "#/components/responses/Error"}
+        "403": {$ref: "#/components/responses/Error"}
+
+components:
+  responses:
+    Error:
+      description: Error con formato uniforme
+      content:
+        application/json:
+          schema: {$ref: "#/components/schemas/Error"}
+  schemas:
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code: {type: string, example: OBRA_SIN_TECNICO}
+            message: {type: string, example: Debe asignar al menos un técnico}
+            details: {type: object}
+    # TODO(dueño): definir aquí los schemas de entrada y salida de este módulo
+    # (tipos, largos, rangos) y referenciarlos en los endpoints con $ref. Ver contracts/examples/.

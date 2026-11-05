@@ -1,0 +1,23 @@
+{
+  "count": 2,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id_cliente": 1,
+      "rut": "76.000.001-1",
+      "razon_social": "Frigorífico Los Andes SpA",
+      "contacto_nombre": "María Rojas",
+      "telefono": "+56 9 1111 1111",
+      "email": "contacto@losandes.test"
+    },
+    {
+      "id_cliente": 2,
+      "rut": "76.000.002-2",
+      "razon_social": "Agrícola Valle Verde Ltda.",
+      "contacto_nombre": null,
+      "telefono": null,
+      "email": "contacto@valleverde.test"
+    }
+  ]
+}

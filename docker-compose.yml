@@ -1,0 +1,18 @@
+# Servicios locales de desarrollo: PostgreSQL 16 y MongoDB 7.
+# Arranque: docker compose up -d
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: fyag
+      POSTGRES_PASSWORD: fyag
+      POSTGRES_DB: fyag
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+  mongo:
+    image: mongo:7
+    ports: ["27017:27017"]
+    volumes: [mongodata:/data/db]
+volumes:
+  pgdata:
+  mongodata:
